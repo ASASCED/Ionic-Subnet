@@ -1,9 +1,55 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>ips</ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="tertiary">
+        <ion-title>Calcular VLSM</ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+
+    <h3>Direccion IP</h3>
+    <ion-row>
+        <ion-col>
+            <ion-item>
+                <ion-input text-center placeholder="192" #noIp1></ion-input>
+            </ion-item>
+        </ion-col>
+        <ion-col>
+            <ion-item>
+                <ion-input text-center placeholder="168" #noIp2></ion-input>
+            </ion-item>
+        </ion-col>
+        <ion-col>
+            <ion-item>
+                <ion-input text-center placeholder="1" #noIp3></ion-input>
+            </ion-item>
+        </ion-col>
+        <ion-col>
+            <ion-item>
+                <ion-input text-center placeholder="0" #noIp4></ion-input>
+            </ion-item>
+        </ion-col>
+        <ion-col>
+            <ion-item>
+                <ion-input text-center placeholder="24" #noSlash></ion-input>
+            </ion-item>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-item *ngFor="let host of hosts">
+            <ion-icon name="code-working" slot="start"></ion-icon>
+            <ion-input class="hostCount"></ion-input>
+        </ion-item>
+    </ion-row>
+    <br>
+    <ion-row>
+        <ion-button color="dark" size="small" (click)="addHost()">
+            <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+            <ion-label>Agregar Host</ion-label>
+        </ion-button>
+    </ion-row>
+
+    <br>
+    <ion-button expand="full" color="tertiary" (click)="calcularVLSM()">CALCULAR</ion-button>
 
 </ion-content>
