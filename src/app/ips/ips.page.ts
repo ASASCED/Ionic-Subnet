@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { dashCaseToCamelCase } from '@angular/compiler/src/util';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ips',
@@ -9,17 +9,18 @@ import { dashCaseToCamelCase } from '@angular/compiler/src/util';
 export class IpsPage implements OnInit {
 
   hosts: string[] = [];
-  count: number = 0;
+  ip: string[] = [];
+  slash: string;
+  count = 0;
   finalHosts: number[] = [];
-  numero: number = 0;
-  HostJSON: any[] = [
-    {
-      ip: '170.0.4.2',
-      hosts: this.hosts
-    }
-  ];
+  numero = 0;
+  HostJSON: any = {
+    ip: [],
+    hosts: [],
+    slash: '/1'
+  };
 
-  constructor() { }
+  constructor(private _router: Router) { }
 
   ngOnInit() {
   }
@@ -30,11 +31,33 @@ export class IpsPage implements OnInit {
   }
 
   calcularVLSM() {
-    let dato: any = document.getElementsByClassName('hostCount');
+    const dato: any = document.getElementsByClassName('hostCount');
+    const ip: any = document.getElementsByClassName('ip');
+
     for (let i = 0; i < this.hosts.length; i++) {
       this.finalHosts.push(dato[i].value);
     }
+
+    for (let i = 0; i < 5; i++) {
+      if (i < 4) {
+        this.ip.push(ip[i].value);
+      } else if (i === 4) {
+        this.slash = ip[i].value;
+      }
+    }
+
+    this.finalHosts = this.finalHosts.sort(this.deMenorAMayor);
     console.log(this.finalHosts);
+    this.HostJSON.ip = this.ip;
+    this.HostJSON.hosts = this.finalHosts;
+    this.HostJSON.slash = this.slash;
+    console.log(this.HostJSON);
+
+    this._router.navigate(['/subnet', this.HostJSON]);
+  }
+
+  deMenorAMayor(elem1, elem2) {
+    return elem1 - elem2;
   }
 
 }

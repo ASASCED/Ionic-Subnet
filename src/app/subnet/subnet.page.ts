@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-subnet',
@@ -7,7 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubnetPage implements OnInit {
 
-  constructor() { }
+  HostJSON: any = {
+    ip: [],
+    hosts: [],
+    slash: '/1'
+  };
+
+  constructor(private _activatedRoute: ActivatedRoute) {
+    this._activatedRoute.params.subscribe( data => {
+      this.HostJSON = data;
+    });
+  }
 
   ngOnInit() {
   }
