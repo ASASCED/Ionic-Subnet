@@ -58,6 +58,7 @@ export class PageinfoComponent implements OnInit {
   ngOnInit() { }
 
   onClick() {
+    this._datosSubnet.clearNet();
     this._popoverCtrl.dismiss();
   }
 
