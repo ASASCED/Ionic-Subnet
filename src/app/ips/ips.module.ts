@@ -6,6 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { IpsPage } from './ips.page';
+import { PageinfoComponent } from '../components/pageinfo/pageinfo.component';
+import { ComponentsModule } from '../components/components.module';
 
 const routes: Routes = [
   {
@@ -15,9 +17,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
+  entryComponents: [
+    PageinfoComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
+    ComponentsModule,
     IonicModule,
     RouterModule.forChild(routes)
   ],
