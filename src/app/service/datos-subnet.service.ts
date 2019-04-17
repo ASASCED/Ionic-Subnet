@@ -10,13 +10,17 @@ export class DatosSubnetService {
   private net: Neting = {
     ip: [],
     hosts: [],
-    slash: null
+    slash: 0
   };
 
   setNet(ip: number[], hosts: number[], slash: number) {
     this.net.ip = ip;
     this.net.hosts = hosts;
     this.net.slash = slash;
+
+    console.log('Seting: ' + this.net.ip);
+    console.log('Seting: ' + this.net.hosts);
+    console.log('Seting: ' + this.net.slash);
   }
 
   getNet(): Neting {
@@ -24,15 +28,13 @@ export class DatosSubnetService {
   }
 
   clearNet() {
-    while (this.net.ip.length > 0) {
-      this.net.ip.pop();
-    }
+    this.net.ip.length = 0;
+    this.net.hosts.length = 0;
+    this.net.slash = 0;
 
-    while (this.net.hosts.length > 0) {
-      this.net.hosts.pop();
-    }
-
-    this.net.slash = null;
+    console.log('Clear: ' + this.net.ip);
+    console.log('Clear: ' + this.net.hosts);
+    console.log('Clear: ' + this.net.slash);
   }
 }
 

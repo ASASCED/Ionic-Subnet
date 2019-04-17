@@ -77,9 +77,6 @@ export class IpsPage implements OnInit {
       this.slashCap += this.slashCap + 2;
     }
 
-    console.log(this.slashCap);
-    console.log(this.sumHost);
-
     if (this.comVLSM()) {
       return false;
     } else {
