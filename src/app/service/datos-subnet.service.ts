@@ -8,12 +8,12 @@ export class DatosSubnetService {
   constructor() { }
 
   private net: Neting = {
-    ip: [1, 1, 1, 1],
-    hosts: [3, 3, 3, 3],
-    slash: 2
+    ip: [],
+    hosts: [],
+    slash: null
   };
 
-  setNet( ip: number[], hosts: number[], slash: number ) {
+  setNet(ip: number[], hosts: number[], slash: number) {
     this.net.ip = ip;
     this.net.hosts = hosts;
     this.net.slash = slash;
@@ -21,6 +21,18 @@ export class DatosSubnetService {
 
   getNet(): Neting {
     return this.net;
+  }
+
+  clearNet() {
+    while (this.net.ip.length > 0) {
+      this.net.ip.pop();
+    }
+
+    while (this.net.hosts.length > 0) {
+      this.net.hosts.pop();
+    }
+
+    this.net.slash = null;
   }
 }
 

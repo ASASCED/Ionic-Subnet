@@ -18,7 +18,7 @@ export class IpsPage implements OnInit {
   subis: number[] = [];
   slash: number;
 
-  constructor(private _router: Router, private _datosSubnet: DatosSubnetService) { }
+  constructor(private _router: Router, private _datosSubnet: DatosSubnetService) {}
 
   ngOnInit() {
   }

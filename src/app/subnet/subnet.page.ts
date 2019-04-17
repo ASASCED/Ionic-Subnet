@@ -17,4 +17,9 @@ export class SubnetPage implements OnInit {
   ngOnInit() {
   }
 
+  limpiar() {
+    console.log('Net limpio');
+    this._datosSubnet.clearNet();
+  }
+
 }
