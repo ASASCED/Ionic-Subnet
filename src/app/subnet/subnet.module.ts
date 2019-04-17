@@ -6,6 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { SubnetPage } from './subnet.page';
+import { IpsPipe } from '../pipes/all-pipes.pipe';
+
 
 const routes: Routes = [
   {
@@ -21,6 +23,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [SubnetPage]
+  declarations: [SubnetPage, IpsPipe]
 })
 export class SubnetPageModule {}

@@ -9,6 +9,14 @@
 
 <ion-content padding>
 
-    <ion-label> {{HostJSON.slash}} </ion-label>
+    <ion-list *ngFor="let sub of HostJSON.hosts; let idx = index">
+        <h2>Subneteo {{idx + 1}}</h2>
+        <ion-item>IP : {{ HostJSON.ip | ips }} </ion-item>
+        <ion-item>PU : </ion-item>
+        <ion-item>UU : </ion-item>
+        <ion-item>MM : </ion-item>
+        <ion-item>Hosts requeridos : {{ HostJSON.hosts[idx] }} </ion-item>
+        <ion-item>Hosts utilizados : </ion-item>
+    </ion-list>
 
 </ion-content>

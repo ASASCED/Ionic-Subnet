@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DatosSubnetService, Neting } from '../service/datos-subnet.service';
 
 @Component({
   selector: 'app-ips',
@@ -10,17 +11,14 @@ export class IpsPage implements OnInit {
 
   hosts: string[] = [];
   ip: string[] = [];
-  slash: string;
-  count = 0;
-  finalHosts: number[] = [];
   numero = 0;
-  HostJSON: any = {
-    ip: [],
-    hosts: [],
-    slash: '/1'
-  };
+  HostJSON: Neting;
 
-  constructor(private _router: Router) { }
+  ips: number[] = [];
+  subis: number[] = [];
+  slash: number;
+
+  constructor(private _router: Router, private _datosSubnet: DatosSubnetService) { }
 
   ngOnInit() {
   }
@@ -31,29 +29,24 @@ export class IpsPage implements OnInit {
   }
 
   calcularVLSM() {
-    const dato: any = document.getElementsByClassName('hostCount');
+    const host: any = document.getElementsByClassName('hostCount');
     const ip: any = document.getElementsByClassName('ip');
 
+    for (let i = 0; i < 4; i++) {
+      this.ips.push(ip[i].value);
+    }
+
+    this.slash = ip[4].value;
+
     for (let i = 0; i < this.hosts.length; i++) {
-      this.finalHosts.push(dato[i].value);
+      this.subis.push(host[i].value);
     }
 
-    for (let i = 0; i < 5; i++) {
-      if (i < 4) {
-        this.ip.push(ip[i].value);
-      } else if (i === 4) {
-        this.slash = ip[i].value;
-      }
-    }
+    this.subis.sort(this.deMenorAMayor);
 
-    this.finalHosts = this.finalHosts.sort(this.deMenorAMayor);
-    console.log(this.finalHosts);
-    this.HostJSON.ip = this.ip;
-    this.HostJSON.hosts = this.finalHosts;
-    this.HostJSON.slash = this.slash;
-    console.log(this.HostJSON);
+    this._datosSubnet.setNet(this.ips, this.subis, this.slash);
 
-    this._router.navigate(['/subnet', this.HostJSON]);
+    this._router.navigate(['/subnet']);
   }
 
   deMenorAMayor(elem1, elem2) {

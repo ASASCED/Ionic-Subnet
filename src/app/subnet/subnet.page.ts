@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { DatosSubnetService, Neting } from '../service/datos-subnet.service';
 
 @Component({
   selector: 'app-subnet',
@@ -8,16 +8,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SubnetPage implements OnInit {
 
-  HostJSON: any = {
-    ip: [],
-    hosts: [],
-    slash: '/1'
-  };
+  HostJSON: Neting;
 
-  constructor(private _activatedRoute: ActivatedRoute) {
-    this._activatedRoute.params.subscribe( data => {
-      this.HostJSON = data;
-    });
+  constructor(private _datosSubnet: DatosSubnetService) {
+    this.HostJSON = Object.assign({}, this._datosSubnet.getNet());
   }
 
   ngOnInit() {
