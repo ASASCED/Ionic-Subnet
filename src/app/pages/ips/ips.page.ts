@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DatosSubnetService, Neting } from '../../service/datos-subnet.service';
 import { PopoverController } from '@ionic/angular';
-import { PageinfoComponent } from '../components/pageinfo/pageinfo.component';
-import { DatosSubnetService, Neting } from '../service/datos-subnet.service';
+import { PageinfoComponent } from '../../components/pageinfo/pageinfo.component';
 
 @Component({
   selector: 'app-ips',
@@ -27,7 +27,7 @@ export class IpsPage implements OnInit {
     private _router: Router,
     private _datosSubnet: DatosSubnetService,
     private _popoverCtrl: PopoverController
-    ) { }
+  ) { }
 
   ngOnInit() {
   }

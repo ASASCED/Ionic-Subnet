@@ -5,28 +5,23 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { IpsPage } from './ips.page';
-import { PageinfoComponent } from '../components/pageinfo/pageinfo.component';
-import { ComponentsModule } from '../components/components.module';
+import { SubnetPage } from './subnet.page';
+import { IpsPipe } from '../../pipes/ips.pipe';
 
 const routes: Routes = [
   {
     path: '',
-    component: IpsPage
+    component: SubnetPage
   }
 ];
 
 @NgModule({
-  entryComponents: [
-    PageinfoComponent
-  ],
   imports: [
     CommonModule,
     FormsModule,
-    ComponentsModule,
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [IpsPage]
+  declarations: [SubnetPage, IpsPipe]
 })
-export class IpsPageModule {}
+export class SubnetPageModule {}

@@ -3,8 +3,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: 'ips', pathMatch: 'full' },
-  { path: 'ips', loadChildren: './ips/ips.module#IpsPageModule' },
-  { path: 'subnet', loadChildren: './subnet/subnet.module#SubnetPageModule' },
+  { path: 'ips', loadChildren: './pages/ips/ips.module#IpsPageModule' },
+  { path: 'subnet', loadChildren: './pages/subnet/subnet.module#SubnetPageModule' },
 ];
 
 @NgModule({

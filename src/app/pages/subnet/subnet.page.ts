@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DatosSubnetService, Neting } from '../service/datos-subnet.service';
+import { DatosSubnetService, Neting } from '../../service/datos-subnet.service';
 
 @Component({
   selector: 'app-subnet',
