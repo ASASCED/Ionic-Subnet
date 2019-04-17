@@ -35,6 +35,7 @@ export class IpsPage implements OnInit {
   async mostrarPop() {
     const popover = await this._popoverCtrl.create({
       component: PageinfoComponent,
+      backdropDismiss: false
     });
     await popover.present();
   }
@@ -69,28 +70,22 @@ export class IpsPage implements OnInit {
   }
 
   sumariVLSM(): boolean {
+    this.sumHost = 0;
+    this.slashCap = 0;
+
     for (let i = 0; i < this.subis.length; i++) {
-      this.sumHost = this.sumHost + (+this.subis[i]);
+      this.sumHost += (+this.subis[i]);
     }
 
     for (let i = 0; i < (30 - this.slash); i++) {
       this.slashCap += this.slashCap + 2;
     }
 
-    if (this.comVLSM()) {
-      return false;
-    } else {
-      return true;
-    }
-
-  }
-
-  comVLSM(): boolean {
     if (this.sumHost > this.slashCap) {
       console.log('No se puede realizar el subneteo');
-      return true;
-    } else {
       return false;
+    } else {
+      return true;
     }
   }
 

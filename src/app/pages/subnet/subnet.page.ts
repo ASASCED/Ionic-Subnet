@@ -12,6 +12,7 @@ export class SubnetPage implements OnInit {
 
   constructor(private _datosSubnet: DatosSubnetService) {
     this.HostJSON = Object.assign({}, this._datosSubnet.getNet());
+    console.log(this.HostJSON);
   }
 
   ngOnInit() {
