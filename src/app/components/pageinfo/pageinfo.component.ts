@@ -42,7 +42,7 @@ export class PageinfoComponent implements OnInit {
       this.prubeSlash += this.prubeSlash + 2;
 
       if (this.prubeSlash > this.limHost) {
-        console.log('PrubeSlashLoop' + this.prubeSlash);
+        console.log('PrubeSlashLoop: ' + this.prubeSlash);
         this.utilSlash.push(this.diagonale);
       }
 

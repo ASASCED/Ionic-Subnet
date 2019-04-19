@@ -14,14 +14,15 @@ export class IpsPage implements OnInit {
   hosts: string[] = [];
   ip: string[] = [];
   numero = 0;
-  HostJSON: Neting;
 
   ips: number[] = [];
   subis: number[] = [];
   slash: number;
+  reqHost: number;
 
   sumHost: number = 0;
   slashCap: number = 2;
+  comp: boolean;
 
   constructor(
     private _router: Router,
@@ -42,7 +43,6 @@ export class IpsPage implements OnInit {
 
   addHost() {
     this.hosts.push(`input${this.numero++}`);
-    console.log(this.hosts);
   }
 
   calcularVLSM() {
@@ -60,9 +60,12 @@ export class IpsPage implements OnInit {
     this.slash = ip[4].value;
 
     this.subis.sort(this.deMenorAMayor);
+
+    this.comp = this.sumariVLSM();
+
     this._datosSubnet.setNet(this.ips, this.subis, this.slash);
 
-    if (this.sumariVLSM()) {
+    if (this.comp) {
       this._router.navigate(['/subnet']);
     } else {
       this.mostrarPop();
@@ -77,12 +80,14 @@ export class IpsPage implements OnInit {
       this.sumHost += (+this.subis[i]);
     }
 
-    for (let i = 0; i < (30 - this.slash); i++) {
+    for (let i = 0; i < (31 - this.slash); i++) {
       this.slashCap += this.slashCap + 2;
     }
 
+    console.log(`SumHost: ${this.sumHost}`);
+    console.log(`SlashCap: ${this.slashCap}`);
+
     if (this.sumHost > this.slashCap) {
-      console.log('No se puede realizar el subneteo');
       return false;
     } else {
       return true;
