@@ -35,3 +35,13 @@ export interface Neting {
   hosts: number[];
   slash: number;
 }
+
+export interface Port {
+  ip: number[];
+  pu: number[];
+  uu: number[];
+  bc: number[];
+  mm: number[];
+  host: string;
+  reqHost: string;
+}

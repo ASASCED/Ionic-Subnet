@@ -59,7 +59,7 @@ export class IpsPage implements OnInit {
 
     this.slash = ip[4].value;
 
-    this.subis.sort(this.deMenorAMayor);
+    this.subis.sort(this.deMayorAMenor);
 
     this.comp = this.sumariVLSM();
 
@@ -94,8 +94,8 @@ export class IpsPage implements OnInit {
     }
   }
 
-  deMenorAMayor(elem1, elem2) {
-    return elem1 - elem2;
+  deMayorAMenor(elem1, elem2) {
+    return elem2 - elem1;
   }
 
 }

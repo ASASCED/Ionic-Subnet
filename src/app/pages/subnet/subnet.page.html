@@ -11,13 +11,13 @@
 
     <ion-list *ngFor="let sub of conSubNet; let idx = index">
         <h2>Subneteo {{idx + 1}}</h2>
-        <ion-item>IP : {{ sub.ip }} </ion-item>
-        <ion-item>PU : {{ sub.pu }} </ion-item>
-        <ion-item>UU : {{ sub.uu }} </ion-item>
-        <ion-item>BC : {{ sub.bc }} </ion-item>
-        <ion-item>MM : {{ sub.mm }} </ion-item>
-        <ion-item>Hosts requeridos : {{ sub.reqHost }} </ion-item>
-        <ion-item>Hosts utilizados : {{ sub.host }}</ion-item>
+        <ion-item>IP : {{ sub.ip | ips }} </ion-item>
+        <ion-item>PU : {{ sub.pu | ips }} </ion-item>
+        <ion-item>UU : {{ sub.uu | ips }} </ion-item>
+        <ion-item>BC : {{ sub.bc | ips }} </ion-item>
+        <ion-item>MM : {{ sub.mm | ips }} </ion-item>
+        <ion-item>Hosts requeridos : {{ sub.host }} </ion-item>
+        <ion-item>Hosts utilizados : {{ sub.reqHost }}</ion-item>
     </ion-list>
 
 </ion-content>
