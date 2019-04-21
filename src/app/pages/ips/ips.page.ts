@@ -92,6 +92,8 @@ export class IpsPage implements OnInit {
     } else {
       return true;
     }
+
+    // TODO: Añadir nuevas funciones de diagonal en caso de error.
   }
 
   deMayorAMenor(elem1, elem2) {
