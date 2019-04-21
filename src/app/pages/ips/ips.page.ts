@@ -98,4 +98,8 @@ export class IpsPage implements OnInit {
     return elem2 - elem1;
   }
 
+  eliminarHost( idx: number ) {
+    this.hosts.splice(idx, 1);
+  }
+
 }

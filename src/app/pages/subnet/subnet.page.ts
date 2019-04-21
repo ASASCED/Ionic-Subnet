@@ -9,15 +9,7 @@ import { DatosSubnetService, Neting, Port } from '../../service/datos-subnet.ser
 export class SubnetPage implements OnInit {
 
   HostJSON: Neting;
-  conSubNet: Port[] = [{
-    ip: [],
-    pu: [],
-    uu: [],
-    bc: [],
-    mm: [],
-    host: '',
-    reqHost: ''
-  }];
+  conSubNet: Port[] = [];
 
   hostFinal: number = 0;
 
@@ -35,7 +27,6 @@ export class SubnetPage implements OnInit {
   octThree: number = 0;
   octFour: number = 0;
 
-  limHost: number = 0;
   com: number = 0;
   count: number = 0;
   hostReq: number = 0;
@@ -45,10 +36,6 @@ export class SubnetPage implements OnInit {
   limOctThird: number = 0;
 
   conThir: number = 0;
-  aux: number = 0;
-
-  continue: boolean = true;
-  rele: boolean = true;
 
   constructor(private _datosSubnet: DatosSubnetService) {
     this.HostJSON = Object.assign({}, this._datosSubnet.getNet());
@@ -74,16 +61,38 @@ export class SubnetPage implements OnInit {
 
   subNetComplete() {
     for (let z = 0; z < this.HostJSON.hosts.length; z++) {
-      // COMPROBACIÓN DE TERCER OCTETO
-
+      // COMPROBACIÓN CAPACIDAD DE OCTETOS RESPECTO A LA DIAGONAL
       if (z === 0) {
-        for (let i = 0; i < 31; i++) {
-          this.conThir += 8;
-          if (this.octTwo >= this.conThir) {
-            this.aux = this.conThir;
+        console.log(`Diagonal: ${this.HostJSON.slash}`);
+        for (let i = 1; i < 31; i++) {
+          if (this.HostJSON.slash == i && i >= 24) {
+            this.octFour -= (Math.pow(2, ((31 - this.HostJSON.slash) + 1)) - 2);
+            if (this.octFour < 0) {
+              this.octFour = 0;
+            }
+            console.log(`Thir 4: ${this.octFour}`);
+            console.log(`Thir: ${this.conThir}`);
+          } else if (this.HostJSON.slash == i && i >= 16) {
+            this.octFour = 0;
+            this.octThree -= (Math.pow(2, ((23 - this.HostJSON.slash) + 1)) - 2);
+            if (this.octThree < 0) {
+              this.octThree = 0;
+            }
+            console.log(`Thir 3: ${this.octThree}`);
+          } else if ( this.HostJSON.slash == i && i >= 8) {
+            this.octFour = 0;
+            this.octThree = 0;
+            this.octTwo -= (Math.pow(2, ((15 - this.HostJSON.slash) + 1)) - 2);
+            if (this.octTwo < 0) {
+              this.octTwo = 0;
+            }
+            console.log(`Thir 2: ${this.octTwo}`);
+          } else if ( this.HostJSON.slash == i && i >= 1) {
+            this.octFour = 0;
+            this.octThree = 0;
+            this.octTwo = 0;
           }
         }
-        this.octTwo = this.aux;
       }
 
       this.ip = [this.octOne, this.octTwo, this.octThree, this.octFour];

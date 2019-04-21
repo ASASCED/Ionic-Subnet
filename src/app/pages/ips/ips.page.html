@@ -1,6 +1,6 @@
 <ion-header>
-    <ion-toolbar color="tertiary">
-        <ion-title>Calcular VLSM</ion-title>
+    <ion-toolbar>
+        <ion-title text-center>Calcular VLSM</ion-title>
     </ion-toolbar>
 </ion-header>
 
@@ -10,27 +10,27 @@
     <ion-row>
         <ion-col>
             <ion-item>
-                <ion-input text-center placeholder="192" class="ip"></ion-input>
+                <ion-input type="number" text-center placeholder="192" class="ip"></ion-input>
             </ion-item>
         </ion-col>
         <ion-col>
             <ion-item>
-                <ion-input text-center placeholder="168" class="ip"></ion-input>
+                <ion-input type="number" text-center placeholder="168" class="ip"></ion-input>
             </ion-item>
         </ion-col>
         <ion-col>
             <ion-item>
-                <ion-input text-center placeholder="1" class="ip"></ion-input>
+                <ion-input type="number" text-center placeholder="1" class="ip"></ion-input>
             </ion-item>
         </ion-col>
         <ion-col>
             <ion-item>
-                <ion-input text-center placeholder="0" class="ip"></ion-input>
+                <ion-input type="number" text-center placeholder="0" class="ip"></ion-input>
             </ion-item>
         </ion-col>
         <ion-col>
             <ion-item>
-                <ion-input text-center placeholder="24" class="ip"></ion-input>
+                <ion-input type="number" text-center placeholder="24" class="ip"></ion-input>
             </ion-item>
         </ion-col>
     </ion-row>
@@ -42,16 +42,19 @@
         </ion-button>
     </ion-row>
 
-    <ion-row *ngFor="let host of hosts; let i = index">
-        <ion-label position="floating" class="_label">Host {{ i }} </ion-label>
+    <ion-row *ngFor="let host of hosts; let idx = index">
+        <ion-label position="floating" class="_label">Host {{ idx + 1 }} </ion-label>
         <ion-item>
-            <ion-icon name="code-working" slot="start"></ion-icon>
-            <ion-input class="hostCount"></ion-input>
+            <ion-icon slot="start" name="code-working" slot="start"></ion-icon>
+            <ion-input type="number" class="hostCount"></ion-input>
+            <ion-button (click)="eliminarHost(idx)" fill="clear" color="dark">
+                <ion-icon slot="end" name="remove-circle" class="size"></ion-icon>
+            </ion-button>
         </ion-item>
     </ion-row>
     <br>
 
     <br>
-    <ion-button expand="full" color="tertiary" (click)="calcularVLSM()">CALCULAR</ion-button>
+    <ion-button expand="full" color="success" (click)="calcularVLSM()">CALCULAR</ion-button>
 
 </ion-content>
