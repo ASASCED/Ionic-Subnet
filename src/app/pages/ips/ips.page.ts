@@ -19,6 +19,7 @@ export class IpsPage implements OnInit {
   subis: number[] = [];
   slash: number;
   reqHost: number;
+  finalSlash: number = 0;
 
   sumHost: number = 0;
   slashCap: number = 2;
@@ -39,6 +40,12 @@ export class IpsPage implements OnInit {
       backdropDismiss: false
     });
     await popover.present();
+
+    const { data } = await popover.onDidDismiss();
+
+    console.log(data);
+    this.finalSlash = data.slash;
+    console.log(this.finalSlash);
   }
 
   addHost() {
@@ -84,8 +91,7 @@ export class IpsPage implements OnInit {
       this.slashCap += this.slashCap + 2;
     }
 
-    console.log(`SumHost: ${this.sumHost}`);
-    console.log(`SlashCap: ${this.slashCap}`);
+    // FIXME: Arreglar el bug que permite el paso hacia la pantalla de subneteo sin llenar algun campo principal o sin algun host de por medio.
 
     if (this.sumHost > this.slashCap) {
       return false;

@@ -30,7 +30,8 @@
         </ion-col>
         <ion-col>
             <ion-item>
-                <ion-input type="number" text-center placeholder="24" class="ip"></ion-input>
+                <ion-input *ngIf="finalSlash == 0" type="number" text-center placeholder="24" class="ip"></ion-input>
+                <ion-input *ngIf="finalSlash > 0" type="number" text-center [value]="finalSlash" class="ip"></ion-input>
             </ion-item>
         </ion-col>
     </ion-row>
@@ -48,7 +49,7 @@
             <ion-icon slot="start" name="code-working" slot="start"></ion-icon>
             <ion-input type="number" class="hostCount"></ion-input>
             <ion-button (click)="eliminarHost(idx)" fill="clear" color="dark">
-                <ion-icon slot="end" name="remove-circle" class="size"></ion-icon>
+                <ion-icon name="remove-circle" class="size"></ion-icon>
             </ion-button>
         </ion-item>
     </ion-row>

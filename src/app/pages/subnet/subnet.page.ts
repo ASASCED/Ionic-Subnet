@@ -63,22 +63,18 @@ export class SubnetPage implements OnInit {
     for (let z = 0; z < this.HostJSON.hosts.length; z++) {
       // COMPROBACIÓN CAPACIDAD DE OCTETOS RESPECTO A LA DIAGONAL
       if (z === 0) {
-        console.log(`Diagonal: ${this.HostJSON.slash}`);
         for (let i = 1; i < 31; i++) {
           if (this.HostJSON.slash == i && i >= 24) {
             this.octFour -= (Math.pow(2, ((31 - this.HostJSON.slash) + 1)) - 2);
             if (this.octFour < 0) {
               this.octFour = 0;
             }
-            console.log(`Thir 4: ${this.octFour}`);
-            console.log(`Thir: ${this.conThir}`);
           } else if (this.HostJSON.slash == i && i >= 16) {
             this.octFour = 0;
             this.octThree -= (Math.pow(2, ((23 - this.HostJSON.slash) + 1)) - 2);
             if (this.octThree < 0) {
               this.octThree = 0;
             }
-            console.log(`Thir 3: ${this.octThree}`);
           } else if ( this.HostJSON.slash == i && i >= 8) {
             this.octFour = 0;
             this.octThree = 0;
@@ -86,7 +82,6 @@ export class SubnetPage implements OnInit {
             if (this.octTwo < 0) {
               this.octTwo = 0;
             }
-            console.log(`Thir 2: ${this.octTwo}`);
           } else if ( this.HostJSON.slash == i && i >= 1) {
             this.octFour = 0;
             this.octThree = 0;
@@ -116,9 +111,6 @@ export class SubnetPage implements OnInit {
 
       //  CALCULO DE SECTORES
 
-      console.log(`Limite OCT: ${this.limOctFirst}`);
-      console.log(`Limite HOST: ${this.HostJSON.hosts[z]}`);
-
       for (let i = 0; i < 7; i++) {
         this.limOctFirst += this.limOctFirst + 2;
         if (this.limOctFirst >= this.HostJSON.hosts[z]) {
@@ -129,10 +121,7 @@ export class SubnetPage implements OnInit {
           this.octFour = 255;
           this.masc[3] -= 255;
         }
-        console.log(`Limite 3: ${this.limOctFirst}`);
       }
-
-      console.log(`LIMITE AUTO: ${this.limOctFirst}`);
 
       for (let i = 0; i < 7; i++) {
         if (this.limOctFirst >= this.HostJSON.hosts[z]) {
@@ -145,10 +134,7 @@ export class SubnetPage implements OnInit {
         }
         this.limOctFirst += this.limOctFirst + 2;
         this.limOctSecond += this.limOctSecond + 1;
-        console.log(`Limite 2: ${this.limOctSecond}`);
       }
-
-      console.log(`LIMITE AUTO: ${this.limOctFirst}`);
 
       for (let i = 0; i < 7; i++) {
         this.limOctFirst += this.limOctFirst + 2;
@@ -161,7 +147,6 @@ export class SubnetPage implements OnInit {
           this.masc[1] -= 255;
         }
         this.limOctThird += this.limOctThird + 1;
-        console.log(`Limite 1: ${this.limOctThird}`);
       }
 
       this.uu = [this.octOne, this.octTwo, this.octThree, (this.octFour - 1)];

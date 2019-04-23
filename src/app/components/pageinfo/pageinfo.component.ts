@@ -17,6 +17,8 @@ export class PageinfoComponent implements OnInit {
   utilSlash: number[] = [];
   diagonale: number = 30;
 
+  finalSlash: number;
+
   constructor(
     private _datosSubnet: DatosSubnetService,
     private _popoverCtrl: PopoverController
@@ -42,24 +44,25 @@ export class PageinfoComponent implements OnInit {
       this.prubeSlash += this.prubeSlash + 2;
 
       if (this.prubeSlash > this.limHost) {
-        console.log('PrubeSlashLoop: ' + this.prubeSlash);
         this.utilSlash.push(this.diagonale);
       }
 
       this.diagonale--;
     }
-
-    console.log('LimHost: ' + this.limHost);
-    console.log('LimHostArr: ' + this.limHostArr);
-    console.log('UtilSlash: ' + this.utilSlash);
-    console.log('PrubeSlash: ' + this.prubeSlash);
   }
 
   ngOnInit() { }
 
   onClick() {
     this._datosSubnet.clearNet();
-    this._popoverCtrl.dismiss();
+    this._popoverCtrl.dismiss({
+      slash: this.finalSlash
+    });
+  }
+
+  valueSelect() {
+    this.finalSlash = Number((<HTMLInputElement>document.getElementById('slash')).value);
+    console.log(`Item: ${this.finalSlash}`);
   }
 
 }
