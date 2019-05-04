@@ -7,7 +7,7 @@ export class IpsPipe implements PipeTransform {
 
   ip: string;
 
-  transform(ip: number[], args: any[]): string {
+  transform(ip: number[]): string {
     this.ip = String(ip.join('.'));
     return this.ip;
   }
